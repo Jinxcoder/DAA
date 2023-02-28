@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<time.h>
+int swap(int* a,int* b){
+	int temp=*a;
+	*a=*b;
+	*b=temp;
+
+}
+int partition(int a[],int l,int u){
+	int p=a[l];
+	int i=l;
+	int j=u;
+	while(i<j){
+		do{
+			i++;
+		}while(a[i]<=p);
+		do{
+			j--;
+		}while(a[j]>p);
+		if(i<j)
+		swap(&a[i],&a[j]);
+		}
+		swap(&a[l],&a[j]);
+		return j;
+	}
+	void quicksort(int a[],int l,int j){
+		if(l<j)
+		{
+			int k=partition(a,l,j);
+			quicksort(a,l,k);
+			quicksort(a,k+1,j);
+		}
+			
+	}
+	
+
+
+int main(){
+		int n,i;
+	printf("enter the size of an array:\n");
+	scanf("%d",&n);
+	int a[n];
+	for(i=0;i<n;i++){
+	a[i]=rand()%100;
+	}
+	for(i=0;i<n;i++){
+		printf(" %d",a[i]);
+	}
+		printf("\n after sorting\n");
+		int l=0,u=n;
+			double ts=0.0;
+	clock_t tb=clock();
+		quicksort(a,l,u);
+			for(i=0;i<n;i++){
+		printf("  %d",a[i]);
+	}
+		clock_t te=clock();
+	ts +=(double)(te-tb)/CLOCKS_PER_SEC;
+	printf(" \n elapse time is%f scale",ts);
+
+	
+	return 0;
+		
+}
