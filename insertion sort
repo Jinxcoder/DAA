@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<time.h>
+void insertionsort(int a[],int n){
+	int i,j,x;
+	for(i=1;i<n;i++){
+		j=i-1;
+		x=a[i];
+		while(j>-1&&a[j]>x){
+			a[j+1]=a[j];
+			j--;
+		}
+		a[j+1]=x;
+	}
+	for(i=0;i<n;i++){
+		printf(" %d",a[i]);
+	}
+}
+int main (){
+	
+	
+	int n,i;
+	printf("enter the size of an array:\n");
+	scanf("%d",&n);
+	int a[n];
+	for(i=0;i<n;i++){
+	a[i]=rand()%100;
+	}
+	for(i=0;i<n;i++){
+		printf(" %d",a[i]);
+	}
+		printf("\n after sorting\n");
+		double ts=0.0;
+	clock_t tb=clock();
+	insertionsort(a,n);
+	clock_t te=clock();
+	ts +=(double)(te-tb)/CLOCKS_PER_SEC;
+	printf(" \n elapse time is%f scale",ts);
+
+return 0;
+}
